@@ -1,0 +1,21 @@
+.board
+    $board-width: 95vw
+    $board-height: 70vh
+    $values-length: var(--length)
+    $values-min: var(--min)
+    $values-max: var(--max)
+    width: $board-width
+    height: $board-height
+    border: 3px solid black
+    display: flex
+    justify-content: space-around
+    align-items: flex-end
+    padding-top: 10px
+
+    .value
+        $value: var(--value)
+        $sizeing: calc(3vw/$values-length)
+        background-color: blue
+        width: calc($board-width/$values-length - $sizeing*$values-length)
+        height: calc($value/$values-max * $board-height)
+
