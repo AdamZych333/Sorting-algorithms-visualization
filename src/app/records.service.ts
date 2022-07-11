@@ -1,23 +1,32 @@
 import { Injectable } from '@angular/core';
+import { quicksort } from './utils/algorithms/quicksort';
 import { Record } from './utils/record';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecordsService {
-  size: number = 100;
+  size: number = 0;
   records: Record[] = []
 
-  constructor() { 
-    this.createRecords();
-  }
+  constructor() { }
 
   createRecords(size: number = this.size){
-    this.size = size;
-    this.records = [];
-    for(let i = 1; i <= this.size; i++){
-      this.records.push(new Record(i));
+    if(size > this.size){
+      let value = this.records.length;
+      while(this.records.length < size){
+        this.records.push(new Record(value++));
+      }
     }
+    else if(size < this.size){
+      while(this.records.length > size){
+        this.records.pop();
+      }
+      for(let i = 0; i < this.records.length; i++){
+        this.records[i].setValue(i+1);
+      }
+    }
+    this.size = size;
     this.shuffle();
   }
 
@@ -32,13 +41,11 @@ export class RecordsService {
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
 
-      this.swap(this.records[currentIndex], this.records[randomIndex]);
+      this.swap(currentIndex, randomIndex);
     }
   }
 
-  swap(recordA: Record, recordB: Record){
-    const tmp = recordA.getValue()
-    recordA.setValue(recordB.getValue());
-    recordB.setValue(tmp);
+  swap(recordAIndex: number, recordBIndex: number){
+    [this.records[recordAIndex], this.records[recordBIndex]] = [this.records[recordBIndex], this.records[recordAIndex]]
   }
 }
