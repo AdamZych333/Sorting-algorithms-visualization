@@ -10,13 +10,19 @@ export class RecordsService {
 
   constructor() { 
     this.createRecords();
-    this.shuffle()
   }
 
-  private createRecords(){
+  createRecords(size: number = this.size){
+    this.size = size;
+    this.records = [];
     for(let i = 1; i <= this.size; i++){
       this.records.push(new Record(i));
     }
+    this.shuffle();
+  }
+
+  getRecords(){
+    return this.records;
   }
 
   shuffle(){

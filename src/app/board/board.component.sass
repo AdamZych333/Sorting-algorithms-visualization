@@ -14,8 +14,7 @@
 
     .value
         $value: var(--value)
-        $sizeing: calc(3vw/$values-length)
-        background-color: blue
-        width: calc($board-width/$values-length - $sizeing*$values-length)
+        $spaceing: 1px
+        width: calc($board-width/$values-length - $spaceing)
         height: calc($value/$values-max * $board-height)
 

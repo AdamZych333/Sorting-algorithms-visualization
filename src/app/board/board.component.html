@@ -1,5 +1,3 @@
-<div [style.--length]="values.length" [style.--max]="max" [style.--min]="min" class="board">
-    <div [style.--value]="value" class="value" *ngFor="let value of values">
-        
-    </div>
+<div [style.--length]="records.length" [style.--max]="getMax()" [style.--min]="getMin()" class="board">
+    <div [style.background-color]="getColor(record)" [style.--value]="record.getValue()" class="value" *ngFor="let record of records"></div>
 </div>
