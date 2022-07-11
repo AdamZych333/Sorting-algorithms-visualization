@@ -5,7 +5,7 @@ import { Record } from './utils/record';
   providedIn: 'root'
 })
 export class RecordsService {
-  size: number = 20;
+  size: number = 100;
   records: Record[] = []
 
   constructor() { 

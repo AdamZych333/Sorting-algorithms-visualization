@@ -1,0 +1,8 @@
+<mat-form-field appearance="fill">
+    <mat-label>Choosen algorithm</mat-label>
+    <mat-select [(ngModel)]="selectedAlgorithm" name="algorithm">
+      <mat-option *ngFor="let algorithm of algorithms" [value]="algorithm">
+        {{algorithm.viewValue}}
+      </mat-option>
+    </mat-select>
+</mat-form-field>
