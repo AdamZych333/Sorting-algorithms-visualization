@@ -30,4 +30,8 @@ export class MenuComponent {
     if(this.selectedSize.invalid || this.selectedSize.value == null) return;
     this.recordsService.createRecords(this.selectedSize.value);
    }
+
+   onShuffleClick(){
+    this.recordsService.shuffle()
+   }
 }

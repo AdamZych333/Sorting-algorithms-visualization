@@ -13,7 +13,7 @@ export class RecordsService {
 
   createRecords(size: number = this.size){
     if(size > this.size){
-      let value = this.records.length;
+      let value = this.records.length+1;
       while(this.records.length < size){
         this.records.push(new Record(value++));
       }
