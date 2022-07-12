@@ -16,7 +16,7 @@ export class BoardComponent {
    }
 
   getColor(record: Record){
-    return recordColor(this.getMax(), record.getValue());
+    return recordColor(this.getMax(), record.getValue(), record.isHighlighted());
   }
 
   getMax(): number{

@@ -1,4 +1,5 @@
 export class Record{
+    private highlighted: boolean = false;
 
     constructor(private value: number){
         this.value = value;
@@ -10,5 +11,18 @@ export class Record{
 
     setValue(value: number){
         this.value = value;
+    }
+
+    isHighlighted(){
+        return this.highlighted;
+    }
+
+    switchHighlight(){
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                this.highlighted = !this.highlighted;
+                resolve('');
+            }, 10);
+        })
     }
 }

@@ -15,6 +15,7 @@ export class MenuComponent {
   DEFAULT_SIZE: number = 100;
   algorithms: Algorithm[] = algorithms;
   selectedAlgorithm: Algorithm = this.algorithms[0];
+  running: boolean = false;
   selectedSize = new FormControl(this.DEFAULT_SIZE, [Validators.min(this.MIN_SIZE), Validators.max(this.MAX_SIZE)]);
 
   constructor(private recordsService: RecordsService) {
@@ -23,7 +24,12 @@ export class MenuComponent {
 
    onStartClick(){
     if(this.selectedSize.invalid) return;
-    this.selectedAlgorithm.execute(this.recordsService.getRecords());
+    this.running = true;
+    this.selectedSize.disable()
+    this.selectedAlgorithm.execute(this.recordsService.getRecords()).then(() => {
+      this.running = false;
+      this.selectedSize.enable()
+    });
    }
 
    onSizeChange(){
