@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { RecordsService } from '../records.service';
+import { RepaintService } from '../repaint.service';
 import { algorithms } from '../utils/constants/algorithms';
 import { Algorithm } from '../utils/select-option';
 
@@ -9,32 +10,32 @@ import { Algorithm } from '../utils/select-option';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.sass']
 })
-export class MenuComponent {
+export class MenuComponent{
   MAX_SIZE: number = 1000;
   MIN_SIZE: number = 10;
   DEFAULT_SIZE: number = 100;
   algorithms: Algorithm[] = algorithms;
   selectedAlgorithm: Algorithm = this.algorithms[0];
-  running: boolean = false;
-  selectedSize = new FormControl(this.DEFAULT_SIZE, [Validators.min(this.MIN_SIZE), Validators.max(this.MAX_SIZE)]);
+  selectedSize: number = 100;
 
-  constructor(private recordsService: RecordsService) {
+  constructor(public repaintService: RepaintService, private recordsService: RecordsService) {
     recordsService.createRecords(this.DEFAULT_SIZE)
   }
 
    onStartClick(){
-    if(this.selectedSize.invalid) return;
-    this.running = true;
-    this.selectedSize.disable()
-    this.selectedAlgorithm.execute(this.recordsService.getRecords()).then(() => {
-      this.running = false;
-      this.selectedSize.enable()
-    });
+    const toAnimate: {i: number, j: number}[] = this.repaintService.queue;
+    console.log(toAnimate)
+    if(toAnimate.length == 0) this.selectedAlgorithm.execute(this.recordsService.getRecords(), toAnimate);
+    this.repaintService.start();
    }
 
-   onSizeChange(){
-    if(this.selectedSize.invalid || this.selectedSize.value == null) return;
-    this.recordsService.createRecords(this.selectedSize.value);
+   onSizeChange(event: any){
+    if(event > this.MAX_SIZE || event < this.MIN_SIZE) return;
+    this.recordsService.createRecords(event);
+   }
+
+   onStopClick(){
+    this.repaintService.stop();
    }
 
    onShuffleClick(){
