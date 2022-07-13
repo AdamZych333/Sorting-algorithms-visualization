@@ -41,4 +41,8 @@ export class MenuComponent{
    onShuffleClick(){
     this.recordsService.shuffle()
    }
+
+   onResetClick(){
+    this.repaintService.reset();
+   }
 }
