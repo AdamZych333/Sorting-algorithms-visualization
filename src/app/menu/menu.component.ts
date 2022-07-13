@@ -25,7 +25,6 @@ export class MenuComponent{
 
    onStartClick(){
     const toAnimate: {i: number, j: number}[] = this.repaintService.queue;
-    console.log(toAnimate)
     if(toAnimate.length == 0) this.selectedAlgorithm.execute(this.recordsService.getRecords(), toAnimate);
     this.repaintService.start();
    }
@@ -48,6 +47,6 @@ export class MenuComponent{
    }
 
    onSliderChange(event: any){
-    this.repaintService.delay = this.maxSpeed - event.value < 10? this.maxSpeed - event.value: 2*(this.maxSpeed - event.value);
+    this.repaintService.delay = 5*(this.maxSpeed - event.value);
    }
 }
