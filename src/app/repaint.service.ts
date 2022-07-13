@@ -8,7 +8,7 @@ export class RepaintService {
   queue: {i: number, j: number}[] = [];
   timer: ReturnType<typeof setTimeout> | null = null;
   running: boolean = false;
-  delay: number = 100;
+  delay: number = 0;
 
   constructor(private recordsService: RecordsService) { }
 

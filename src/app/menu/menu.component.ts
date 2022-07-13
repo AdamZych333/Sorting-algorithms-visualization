@@ -17,6 +17,7 @@ export class MenuComponent{
   algorithms: Algorithm[] = algorithms;
   selectedAlgorithm: Algorithm = this.algorithms[0];
   selectedSize: number = 100;
+  maxSpeed: number = 100;
 
   constructor(public repaintService: RepaintService, private recordsService: RecordsService) {
     recordsService.createRecords(this.DEFAULT_SIZE)
@@ -44,5 +45,9 @@ export class MenuComponent{
 
    onResetClick(){
     this.repaintService.reset();
+   }
+
+   onSliderChange(event: any){
+    this.repaintService.delay = this.maxSpeed - event.value < 10? this.maxSpeed - event.value: 2*(this.maxSpeed - event.value);
    }
 }

@@ -1,4 +1,4 @@
-<div class="manu">
+<div class="menu">
     <mat-form-field appearance="fill" color="primary">
         <mat-label>Choosen algorithm</mat-label>
         <mat-select [disabled]="repaintService.running" [(ngModel)]="selectedAlgorithm" name="algorithm">
@@ -17,4 +17,17 @@
     <button *ngIf="repaintService.running;" mat-raised-button color="primary" class="stop-btn" (click)="onStopClick()">Stop</button>
     <button [disabled]="repaintService.running" mat-raised-button color="primary" class="shuffle-btn" (click)="onShuffleClick()">Shuffle</button>
     <button mat-raised-button color="accent" class="reset-btn" (click)="onResetClick()">Reset</button>
+    <div class="delay">
+      <div class="delay-label">Speed</div>
+      <mat-slider
+        color="accent"
+        (input)="onSliderChange($event)"
+        thumbLabel
+        step="1"
+        min="0"
+        [max]="maxSpeed"
+        [value]="maxSpeed"
+        aria-label="units">
+      </mat-slider>
+    </div>
 </div>
