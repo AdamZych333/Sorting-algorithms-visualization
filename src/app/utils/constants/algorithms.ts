@@ -5,6 +5,7 @@ import { Record } from "../record";
 import { Algorithm } from "../select-option";
 import { bubblesort } from "../algorithms/bubblesort";
 import { gravitysort } from "../algorithms/gravitysort";
+import { insertsort } from "../algorithms/insertsort";
 
 export const algorithms: Algorithm[] = [
     new Algorithm('quicksort', 'Quick sort', (records: Record[], toAnimate: {i: number, j: number}[]) => 
@@ -17,4 +18,6 @@ export const algorithms: Algorithm[] = [
         bubblesort(toAnimate, records.map(r => r.getValue()))),
     new Algorithm('gravitysort', 'Gravity sort', (records: Record[], toAnimate: {i: number, j: number}[]) => 
         gravitysort(toAnimate, records.map(r => r.getValue()))),
+    new Algorithm('insertsort', 'Insertion sort', (records: Record[], toAnimate: {i: number, j: number}[]) => 
+        insertsort(toAnimate, records.map(r => r.getValue()))),
 ];

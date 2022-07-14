@@ -1,24 +1,22 @@
 .menu
     display: grid
-    grid-template-columns: repeat(7, 130px)
-
-    *
-        margin: 0px 10px
+    grid-template-columns: repeat(12, 65px)
+    grid-gap: 10px
+    margin-bottom: 10px
 
     .algorithm
-        grid-column-start: 1
-        grid-column-end: 3
+        grid-column-start: 2
+        grid-column-end: 5
 
     .size
-        grid-column-start: 3
-        grid-column-end: 5
+        grid-column-start: 5
+        grid-column-end: 8
     
     .delay
-        grid-column-start: 5
-        grid-column-end: 7
+        grid-column-start: 8
+        grid-column-end: 11
 
     button
-        margin: 10px 10px
         top: -7px
         height: 55px
     
@@ -27,7 +25,20 @@
         align-items: center
     
     .start-btn, .stop-btn
-        grid-column-start: 2
+        grid-column-start: 3
+        grid-column-end: 5
+    
+    .step-by-step-btn, .next-step-btn
+        grid-column-start: 5
+        grid-column-end: 7
+    
+    .shuffle-btn
+        grid-column-start: 7
+        grid-column-end: 9
+    
+    .reset-btn
+        grid-column-start: 9
+        grid-column-end: 11
 
     .delay
         width: 200px
