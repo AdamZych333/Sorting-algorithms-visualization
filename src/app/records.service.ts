@@ -7,7 +7,8 @@ import { Record } from './utils/record';
 })
 export class RecordsService {
   size: number = 0;
-  records: Record[] = []
+  records: Record[] = [];
+  rainbowColor: boolean = true;
 
   constructor() { }
 

@@ -26,6 +26,9 @@
         aria-label="units">
       </mat-slider>
     </div>
+    <div class="rainbow">
+      <mat-checkbox [(ngModel)]="recordsService.rainbowColor">Rainbow</mat-checkbox>
+    </div>
     <button *ngIf="!repaintService.running; else stopBtn" mat-raised-button color="primary" class="start-btn" (click)="onStartClick()">Start</button>
     <ng-template #stopBtn>
       <button mat-raised-button color="primary" class="stop-btn" (click)="onStopClick()">Stop</button>

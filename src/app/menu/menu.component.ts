@@ -19,7 +19,7 @@ export class MenuComponent{
   selectedSize: number = 100;
   maxSpeed: number = 100;
 
-  constructor(public repaintService: RepaintService, private recordsService: RecordsService) {
+  constructor(public repaintService: RepaintService, public recordsService: RecordsService) {
     recordsService.createRecords(this.DEFAULT_SIZE)
   }
 

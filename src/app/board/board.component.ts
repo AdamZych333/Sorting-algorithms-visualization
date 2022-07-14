@@ -11,12 +11,14 @@ import { recordColor } from '../utils/record-color';
 export class BoardComponent {
   records: Record[] = [];
 
-  constructor(recordsService: RecordsService) {
+  constructor(private recordsService: RecordsService) {
     this.records = recordsService.getRecords()
    }
 
   getColor(record: Record){
-    return recordColor(this.getMax(), record.getValue(), record.isHighlighted());
+    return this.recordsService.rainbowColor? 
+      recordColor(this.getMax(), record.getValue(), record.isHighlighted()): 
+      'hsla(280, 80%, 60%, 1)';
   }
 
   getMax(): number{
