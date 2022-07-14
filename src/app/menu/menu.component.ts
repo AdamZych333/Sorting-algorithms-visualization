@@ -39,7 +39,8 @@ export class MenuComponent{
    }
 
    onShuffleClick(){
-    this.recordsService.shuffle()
+    this.repaintService.reset();
+    this.recordsService.shuffle();
    }
 
    onResetClick(){
@@ -48,5 +49,14 @@ export class MenuComponent{
 
    onSliderChange(event: any){
     this.repaintService.delay = 5*(this.maxSpeed - event.value);
+   }
+
+   onStepByStepClick(){
+    const toAnimate: {i: number, j: number}[] = this.repaintService.queue;
+    if(toAnimate.length == 0) this.selectedAlgorithm.execute(this.recordsService.getRecords(), toAnimate);
+   }
+
+   onNextStepClick(){
+    this.repaintService.repaintFromQueue();
    }
 }

@@ -25,4 +25,8 @@ export class Record{
             }, 10);
         })
     }
+
+    setHighlighted(highlighted: boolean){
+        this.highlighted = highlighted;
+    }
 }

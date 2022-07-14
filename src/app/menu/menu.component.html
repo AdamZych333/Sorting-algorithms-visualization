@@ -1,5 +1,5 @@
 <div class="menu">
-    <mat-form-field appearance="fill" color="primary">
+    <mat-form-field class="algorithm" appearance="fill" color="primary">
         <mat-label>Choosen algorithm</mat-label>
         <mat-select [disabled]="repaintService.running" [(ngModel)]="selectedAlgorithm" name="algorithm">
           <mat-option *ngFor="let algorithm of algorithms" [value]="algorithm">
@@ -7,16 +7,12 @@
           </mat-option>
         </mat-select>
     </mat-form-field>
-    <mat-form-field appearance="fill" color="primary">
+    <mat-form-field class="size" appearance="fill" color="primary">
         <mat-label>List size</mat-label>
         <input [disabled]="repaintService.running" (ngModelChange)="onSizeChange($event)" [(ngModel)]="selectedSize" matInput type="number" placeholder="Ex. 12"  min="{{MIN_SIZE}}" max="{{MAX_SIZE}}">
         <mat-error *ngIf="selectedSize < MIN_SIZE">Min size: {{MIN_SIZE}}</mat-error>
         <mat-error *ngIf="selectedSize > MAX_SIZE">Max size: {{MAX_SIZE}}</mat-error>
     </mat-form-field>
-    <button *ngIf="!repaintService.running;" mat-raised-button color="primary" class="start-btn" (click)="onStartClick()">Start</button>
-    <button *ngIf="repaintService.running;" mat-raised-button color="primary" class="stop-btn" (click)="onStopClick()">Stop</button>
-    <button [disabled]="repaintService.running" mat-raised-button color="primary" class="shuffle-btn" (click)="onShuffleClick()">Shuffle</button>
-    <button mat-raised-button color="accent" class="reset-btn" (click)="onResetClick()">Reset</button>
     <div class="delay">
       <div class="delay-label">Speed</div>
       <mat-slider
@@ -30,4 +26,14 @@
         aria-label="units">
       </mat-slider>
     </div>
+    <button *ngIf="!repaintService.running; else stopBtn" mat-raised-button color="primary" class="start-btn" (click)="onStartClick()">Start</button>
+    <ng-template #stopBtn>
+      <button mat-raised-button color="primary" class="stop-btn" (click)="onStopClick()">Stop</button>
+    </ng-template>
+    <button *ngIf="!(repaintService.queue.length > 0); else nextStepBtn" mat-raised-button color="primary" class="step-by-step-btn" (click)="onStepByStepClick()">Step by step</button>
+    <ng-template #nextStepBtn>
+      <button mat-raised-button color="primary" class="next-step-btn" (click)="onNextStepClick()">Next step</button>
+    </ng-template>
+    <button [disabled]="repaintService.running" mat-raised-button color="primary" class="shuffle-btn" (click)="onShuffleClick()">Shuffle</button>
+    <button mat-raised-button color="primary" class="reset-btn" (click)="onResetClick()">Reset</button>
 </div>

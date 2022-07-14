@@ -32,11 +32,10 @@ export class RepaintService {
   async repaintFromQueue(){
     const swap = this.queue.shift();
     if(swap === undefined) return;
-    this.recordsService.records[swap.i].switchHighlight();
-    this.recordsService.records[swap.j].switchHighlight();
+    this.recordsService.records.forEach(r => r.setHighlighted(false));
+    this.recordsService.records[swap.i].setHighlighted(true);
+    this.recordsService.records[swap.j].setHighlighted(true);
     this.recordsService.swap(swap.i, swap.j);
-    this.recordsService.records[swap.i].switchHighlight();
-    this.recordsService.records[swap.j].switchHighlight();
   }
 
   private setTimer(){
@@ -46,7 +45,10 @@ export class RepaintService {
           this.setTimer();
         });
       }
-      else this.running = false;
+      else {
+        this.running = false;
+        this.recordsService.records.forEach(r => r.setHighlighted(false));
+      }
     }, this.delay);
   }
 

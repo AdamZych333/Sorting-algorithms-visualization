@@ -1,16 +1,29 @@
 .menu
-    width: 95vw
-    display: flex
-    justify-content: center
+    display: grid
+    grid-template-columns: repeat(6, 130px)
 
     *
         margin: 0px 10px
+
+    .algorithm
+        grid-column-start: 1
+        grid-column-end: 3
+
+    .size
+        grid-column-start: 3
+        grid-column-end: 5
+    
+    .delay
+        grid-column-start: 5
+        grid-column-end: 7
 
     button
         margin: 10px 10px
         top: -7px
         height: 55px
-        width: 100px
+    
+    .start-btn, .stop-btn
+        grid-column-start: 2
 
     .delay
         width: 200px
