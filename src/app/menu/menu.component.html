@@ -1,7 +1,7 @@
 <div class="menu">
     <mat-form-field class="algorithm" appearance="fill" color="primary">
         <mat-label>Choosen algorithm</mat-label>
-        <mat-select [disabled]="repaintService.running" [(ngModel)]="selectedAlgorithm" name="algorithm">
+        <mat-select [disabled]="repaintService.running || repaintService.queue.length > 0" [(ngModel)]="selectedAlgorithm" name="algorithm">
           <mat-option *ngFor="let algorithm of algorithms" [value]="algorithm">
             {{algorithm.viewValue}}
           </mat-option>
